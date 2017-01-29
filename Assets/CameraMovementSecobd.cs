@@ -5,11 +5,11 @@ public class CameraMovementSecobd : MonoBehaviour {
 
 	public GameObject player;
 	public float damping = 1;
-	public float offsetMultiplier = 1;
+	public float offsetMultiplier ;
 	Vector3 offset;
 
 	void Start() {
-		offset = (player.transform.position - transform.position) * offsetMultiplier;
+		offset = (player.transform.position - transform.position);
 	}
 
 	void LateUpdate() {
@@ -35,16 +35,22 @@ public class CameraMovementSecobd : MonoBehaviour {
 		}
 
 		// some sort of zooming
-		if (Input.GetKey (KeyCode.Space))
+		if (Input.GetKey (KeyCode.Space) && offsetMultiplier < 1.4f) {
 			offsetMultiplier += 0.01f;
+			offset = (transform.position - player.transform.position) * offsetMultiplier;
 
-		if (Input.GetKey ("v"))
+		}
+
+		if (Input.GetKey ("v") && offsetMultiplier > 1.0f ) {
 			offsetMultiplier -= 0.01f;
+			offset = (transform.position - player.transform.position) / offsetMultiplier;
+		}
 
 		//controlling how far can the zooming be
-		if(offsetMultiplier<1)
-			offsetMultiplier = 1;
+		if(offsetMultiplier<1.0f)
+			offsetMultiplier = 1.0f;
 		if (offsetMultiplier > 1.4f)
 			offsetMultiplier = 1.4f;
+		
 	}
 }
