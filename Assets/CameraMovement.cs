@@ -36,21 +36,26 @@ public class CameraMovement : MonoBehaviour {
 			damping -= 0.01f ;
 		}
 
-		// some sort of zooming
-		if (Input.GetKey (KeyCode.Space) && offsetMultiplier < 1.4f) {
+		//setting how long the zooming can be  - low offsetMultiplier means zoom in speed is lower, the higher the faster
+		if(Input.GetKey("z"))
 			offsetMultiplier += 0.01f;
+		if (Input.GetKey ("x"))
+			offsetMultiplier -= 0.01f;
+		
+		// some sort of zooming
+		if (Input.GetKey (KeyCode.Space) /*&& offsetMultiplier < 1.4f*/){
 			offset = (transform.position - player.transform.position) * offsetMultiplier;
 
 		}
 
-		if (Input.GetKey ("v") && offsetMultiplier > 1.0f ) {
-			offsetMultiplier -= 0.01f;
+		if (Input.GetKey ("v") /*&& offsetMultiplier > 0.9f */) {
+			//offsetMultiplier -= 0.01f;
 			offset = (transform.position - player.transform.position) / offsetMultiplier;
 		}
 
 		//controlling how far can the zooming be
-		if(offsetMultiplier<1.0f)
-			offsetMultiplier = 1.0f;
+		if(offsetMultiplier<0.9f)
+			offsetMultiplier = 0.9f;
 		if (offsetMultiplier > 1.4f)
 			offsetMultiplier = 1.4f;
 

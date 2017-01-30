@@ -21,6 +21,8 @@ public class CameraThird : MonoBehaviour {
 		transform.position = player.transform.position - (rotation * offset);
 
 		transform.LookAt(player.transform);
+
+		SpeedFactor ();
 	}
 
 	void SpeedFactor()
