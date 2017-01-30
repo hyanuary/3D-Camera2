@@ -51,6 +51,6 @@ public class CameraMovementSecobd : MonoBehaviour {
 			offsetMultiplier = 1.0f;
 		if (offsetMultiplier > 1.4f)
 			offsetMultiplier = 1.4f;
-		
+
 	}
 }

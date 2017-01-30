@@ -5,6 +5,7 @@ public class PlayerMomvement : MonoBehaviour {
 
     public float speed = 1;
     public float turn = 10000;
+	public bool moving = false;
 
 
 
@@ -18,14 +19,20 @@ public class PlayerMomvement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
   
+
+		Moving ();
+	
+    }
+
+	public void Moving ()
+	{
 		//move left to right
 		float horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 		transform.Translate(horizontal, 0,0 );
 
-
-        //move front to back
-        float vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        transform.Translate(0, 0, vertical);
+		//move front to back
+		float vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+		transform.Translate(0, 0, vertical);
 
 		//turn the player around
 		float turn1 = turn * Time.deltaTime;
@@ -36,9 +43,9 @@ public class PlayerMomvement : MonoBehaviour {
 		if (Input.GetKey ("q"))
 			transform.Rotate (0, -turn1, 0);
 
-	
-
-    }
+		moving = true;
+		
+	}
 
 
 }
