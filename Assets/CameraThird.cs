@@ -4,7 +4,6 @@ using System.Collections;
 public class CameraThird : MonoBehaviour {
 
 	public GameObject player;
-	public float offsetMultiplier = 1;
 	public float rotateSpeed = 5;
 	Vector3 offset;
 
@@ -19,7 +18,7 @@ public class CameraThird : MonoBehaviour {
 	public float sensivity = 10.0f;
 
 	void Start() {
-		offset = (player.transform.position - transform.position) * offsetMultiplier;
+		offset = (player.transform.position - transform.position);
 	}
 
 	void LateUpdate() {
@@ -47,19 +46,7 @@ public class CameraThird : MonoBehaviour {
 		if (Input.GetKey ("o")) {
 			rotateSpeed -= 0.01f ;
 		}
-
-		// some sort of zooming
-		if (Input.GetKey (KeyCode.Space))
-			offsetMultiplier += 0.01f;
-
-		if (Input.GetKey ("v"))
-			offsetMultiplier -= 0.01f;
-
-		//controlling how far can the zooming be
-		if(offsetMultiplier<1)
-			offsetMultiplier = 1;
-		if (offsetMultiplier > 1.4f)
-			offsetMultiplier = 1.4f;
+			
 	}
 
 	void ZoomFactor()
