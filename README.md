@@ -21,5 +21,6 @@ OtherNewCamera is just a top view camera which follow the character, which had a
 - Use 'WASD' key to move around and 'QE' to turn around
 - Use 'L' and 'O' to change the damping/Rotation Speed of the camera -> Damping for CameraMovement , Rotation Speed for CameraThird. Damping is used to handle on the angle of the camera and how fast the camera will go back to the player. 
 - Use 'Space' and 'V' to change the offset for the CameraMovement -> for this button it only was used in that script. Offset is used to for the zoom in or out for this camera
+- 'Space' is also used for the key for making the camera move on the OtherCamera
 - Use mouse scroll, to zoom in and zoom out -> this function is applied for the CameraThird and OtherNewCamera.
 - There are bunch of variables that users can use to set the angle, postion and speed of the camera. There are certain variables, like the offset, etc but most of them are adjustable on the game you're using. 
