@@ -3,17 +3,27 @@ using System.Collections;
 
 public class OtherCamera : MonoBehaviour {
 
+	//animation curve variables 
 	public AnimationCurve zoomMode;
 	public float zoomSpeed;
 	public float zoomTime; 
 	public float damping = 1000;
 	Vector3 offset;
 
+	//lerping part
+	private Vector3 startPos;
+	private Vector3 currPos;
+	private float distance = 2f;
+	public float lerpTime = 5;
+	public float currLerpTime = 0;
+	public bool keyHit = false;
+
 	public GameObject player;
 	// Use this for initialization
 	void Start () {
 		
 		offset = transform.position - player.transform.position;
+		startPos = transform.position;
 	}
 
 	
@@ -21,6 +31,9 @@ public class OtherCamera : MonoBehaviour {
 	void Update () {
 		//float distance = Vector3.Distance (player.transform.position, transform.position);
 		OpenOut ();
+
+		Type1 ();
+
 	}
 
 	public void OpenOut()
@@ -45,10 +58,33 @@ public class OtherCamera : MonoBehaviour {
 			transform.LookAt(player.transform.position);*/
 
 			//second type
-			transform.position = Vector3.MoveTowards (transform.position, player.transform.position + offset, damping * curveAmount);
+			//transform.position = Vector3.MoveTowards (transform.position, player.transform.position + offset, damping * curveAmount );
 			yield return null;
 
 
+		}
+	}
+
+	void Type1()
+	{
+		if (Input.GetKeyDown (KeyCode.Space))
+			keyHit = true;
+
+		if (keyHit == true) {
+			currLerpTime += Time.deltaTime;
+			if (currLerpTime >= lerpTime)
+				currLerpTime = lerpTime;
+		}
+
+		float perc = currLerpTime / lerpTime;
+		if(keyHit == true)
+		transform.position = Vector3.Lerp (currPos, player.transform.position  + offset, perc);
+
+		if (transform.position == player.transform.position + offset) {
+			currLerpTime = 0;
+			keyHit = false;
+			currPos = player.transform.position + offset;
+			transform.position = currPos;
 		}
 	}
 
