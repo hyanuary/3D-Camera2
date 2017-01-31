@@ -3,38 +3,52 @@ using System.Collections;
 
 public class OtherCamera : MonoBehaviour {
 
-	//animation curve variables 
+	//animation curve variables -- needing future improvement
 	public AnimationCurve zoomMode;
 	public float zoomSpeed;
 	public float zoomTime; 
 	public float damping = 1000;
-	Vector3 offset;
+
 
 	//lerping part
 	private Vector3 startPos;
 	private Vector3 currPos;
-	private float distance = 2f;
+	public float distance;
+
+	//time limit for how long can the player move around (type2 only)
+	public float lerpTimeAdd;
+	//variables for when the start and when to finish the movement
 	public float lerpTime = 5;
 	public float currLerpTime = 0;
+	// for makign sure it will move when the button is pressed
 	public bool keyHit = false;
+
+	//bool for choosing a type
+	public bool type1On = false;
+	public bool type2On = false;
+
+	//offset variables
+	Vector3 offset;
 
 	public GameObject player;
 	// Use this for initialization
 	void Start () {
 		
-		offset = transform.position - player.transform.position;
+		offset = (transform.position - player.transform.position) ;
 		startPos = transform.position;
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
-		//float distance = Vector3.Distance (player.transform.position, transform.position);
-		OpenOut ();
+		
+		//OpenOut ();
 
-		//Type1 ();
+		if( type1On)
+		Type1 (); //camera moving towards the player after inserting a button
 
-		Type2 ();
+		if( type2On)
+		Type2 (); //the type of camera that have a certain lag
 
 	}
 
@@ -99,8 +113,8 @@ public class OtherCamera : MonoBehaviour {
 		if (Input.GetKeyUp ("w") || Input.GetKeyUp ("d") || Input.GetKeyUp ("a") || Input.GetKeyUp ("s")) {
 			keyHit = true;
 		}
-		if (lerpTime >= 7.0f)
-			keyHit = true;
+		if (lerpTime >= lerpTimeAdd) // an if statements that control for how long the player can move before the camera will
+			keyHit = true;				//follow the player
 
 		if (keyHit == true ) {
 			currLerpTime += Time.deltaTime;

@@ -17,17 +17,17 @@ public class OtherNewCamera : MonoBehaviour {
 
 	public Quaternion rotation = Quaternion.identity;
 
-	public float yRotation = 0.0f;
+	//public float yRotation = 0.0f;
 
 	//zoomin variable 2
 	public float minPoint = 15.0f;
 	public float maxPoint = 90.0f;
 	public float sensivity = 10.0f;
 
-	// How camera pitch (i.e. rotation about x axis) should vary with zoom
+	/*// How camera pitch (i.e. rotation about x axis) should vary with zoom
 	public AnimationCurve pitchCurve;
 	// How far the camera should be placed back along the chosen pitch based on zoom
-	public AnimationCurve distanceCurve;
+	public AnimationCurve distanceCurve;*/
 
 	// Use this for initialization
 	void Start () {
@@ -39,7 +39,7 @@ public class OtherNewCamera : MonoBehaviour {
 	void Update () {
 		Vector3 targetPosition = target.TransformPoint(new Vector3(horizontalBuffer, followDistance, verticalBuffer));
 		transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-		//this is the code that solves the problem
+
 		transform.eulerAngles = new Vector3(99, target.transform.eulerAngles.y, 0);
 
 		ZoomFactor2 ();
@@ -55,7 +55,7 @@ public class OtherNewCamera : MonoBehaviour {
 
 	void animationCamera ()
 	{
-		float zoom = Time.deltaTime;
+		/*float zoom = Time.deltaTime;
 
 		// Create 'S' shaped curve to adjust pitch
 		// Varies from 0 (looking forward) at 0, to 90 (looking straight down) at 1
@@ -86,6 +86,6 @@ public class OtherNewCamera : MonoBehaviour {
 		Vector3 offset = Vector3.forward * distanceCurve.Evaluate(zoom);
 
 		// Then subtract this offset based on the current camera rotation
-		Vector3 targetPos = target.position - targetRot * offset;
+		Vector3 targetPos = target.position - targetRot * offset;*/
 	}
 }

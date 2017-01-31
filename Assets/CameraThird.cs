@@ -13,8 +13,10 @@ public class CameraThird : MonoBehaviour {
 	public float zoomFrom = 20.0f;
 
 	//zoomin variable 2
+	//the distance for how far you can zoom in or out
 	public float minPoint = 15.0f;
 	public float maxPoint = 90.0f;
+	//how fast you scroll
 	public float sensivity = 10.0f;
 
 	void Start() {
@@ -30,8 +32,6 @@ public class CameraThird : MonoBehaviour {
 		transform.position = player.transform.position - (rotation * offset);
 
 		transform.LookAt(player.transform);
-
-		//ZoomFactor ();
 
 		ZoomFactor2 ();
 
