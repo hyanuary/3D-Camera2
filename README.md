@@ -1,4 +1,4 @@
-# 3D-Camera1
+# 3D-Camera
 
 3D camera movement for people to use for their game (main player)
 
