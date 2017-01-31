@@ -35,18 +35,20 @@ public class OtherCamera : MonoBehaviour {
 
 		while (curveAmount < 1.0f && Input.GetKeyUp("w") || Input.GetKeyUp("d")  || Input.GetKeyUp("a") || Input.GetKeyUp("s"))
 		{
-			curveTime = Time.deltaTime * zoomSpeed;
+			curveTime += Time.deltaTime * zoomSpeed;
 			curveAmount = zoomMode.Evaluate (curveTime);
 
 			//1st type
-			Vector3 desiredPosition = player.transform.position + offset;
+			/*Vector3 desiredPosition = (player.transform.position + offset);
 			Vector3 position = Vector3.Lerp(transform.position, desiredPosition , Time.deltaTime * damping);
-			transform.position = position;
-			transform.LookAt(player.transform.position);
+			transform.position = position *  curveAmount;
+			transform.LookAt(player.transform.position);*/
 
 			//second type
-			//transform.position = Vector3.MoveTowards (transform.position, player.transform.position + offset, damping * Time.deltaTime);
+			transform.position = Vector3.MoveTowards (transform.position, player.transform.position + offset, damping * curveAmount);
 			yield return null;
+
+
 		}
 	}
 
