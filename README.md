@@ -12,7 +12,7 @@ CameraThird This camera is fimiliar with the second camera, but it use the mouse
 
 OtherCamera Script is a mcuh better version of the CameraMovementSecobd, which has 2 types camera movement. 1st type is a camera where it will follow the player, after the users press a certain button. It will move faster the farther the character move away from the current position of the camera. The camera will follow even the player move, until the camera reach the certain points. 2nd type makes the camera to follow the player as soon the player lift the moving button or after a certain second, according to how long the users want to sets the timer on. 
 
-OtherNewCamera is just a top view camera which follow the character, which had a little bit lag. It's just a simple camera that can be used in a RTS games or just top down stratey games. It aslo can be used in a top down shooting or a top down puzzle. But for this part, it can be only implemented on a target. 
+OtherNewCamera is just a top view camera which follow the character, which had a little bit lag. It's just a simple camera that can be used in a RTS games or just top down stratey games. It aslo can be used in a top down shooting or a top down puzzle. But for this part, it can be only implemented on a target. The users can interact with the variables to see how much lag the camera follow or on what position will be the centre of the camera.
 
 # How to Use this Script
 
