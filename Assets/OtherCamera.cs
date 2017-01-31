@@ -32,7 +32,9 @@ public class OtherCamera : MonoBehaviour {
 		//float distance = Vector3.Distance (player.transform.position, transform.position);
 		OpenOut ();
 
-		Type1 ();
+		//Type1 ();
+
+		Type2 ();
 
 	}
 
@@ -76,7 +78,7 @@ public class OtherCamera : MonoBehaviour {
 				currLerpTime = lerpTime;
 		}
 
-		float perc = currLerpTime / lerpTime;
+		float perc = (currLerpTime / lerpTime) * distance;
 		if(keyHit == true)
 		transform.position = Vector3.Lerp (currPos, player.transform.position  + offset, perc);
 
@@ -88,4 +90,37 @@ public class OtherCamera : MonoBehaviour {
 		}
 	}
 
+	void Type2()
+	{
+		if (Input.GetKey ("w") || Input.GetKey ("d") || Input.GetKey ("a") || Input.GetKey ("s")) {
+			lerpTime += Time.deltaTime;
+		}
+
+		if (Input.GetKeyUp ("w") || Input.GetKeyUp ("d") || Input.GetKeyUp ("a") || Input.GetKeyUp ("s")) {
+			keyHit = true;
+		}
+		if (lerpTime >= 7.0f)
+			keyHit = true;
+
+		if (keyHit == true ) {
+			currLerpTime += Time.deltaTime;
+			if (currLerpTime >= lerpTime) {
+				currLerpTime = lerpTime;
+
+			}
+				
+	}
+		float perc = (currLerpTime / lerpTime) * distance;
+		if(keyHit == true)
+			transform.position = Vector3.Lerp (currPos, player.transform.position  + offset, perc);
+
+		if (transform.position == player.transform.position + offset) {
+			currLerpTime = 0;
+			lerpTime = 5.0f;
+			keyHit = false;
+			currPos = player.transform.position + offset;
+			transform.position = currPos;
+		}
+
+}
 }
